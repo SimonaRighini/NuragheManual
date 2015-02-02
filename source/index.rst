@@ -28,3 +28,4 @@ Contents:
    Appendix_C.rst
    Appendix_D.rst
    Troubleshooting.rst
+   FaultReport.rst

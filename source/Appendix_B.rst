@@ -2,11 +2,15 @@
 Appendix B - Complete command list
 **********************************
 
-.. note:: COMMAND TEMPORISATION All commands can be temporised (i.e. associated to a starting time) adding a proper **suffix**. There are two possibilities:  * **absolute temporisation** (the operation will be performed at the indicated time)
-      * “@DOY-HH:MM:SS”, where DOY is the Day-Of-Year (1-366) and HH:MM:SS is the UT time; 
-  * **iterative temporisation** (the operation is performed now, then periodically according to the indicated time interval)
-      * “@!DAYS-HH:MM:SS”, where DAYS is the number of days and HH:MM:SS is hours, minutes, seconds.
-Commands (temporised or not) can be used also in the init/pre-scan/post-scan procedures inside schedules. *Observers* are in charge of considering *if* and *when* the use of a certain command makes sense in their schedule, according to their specific needs and goals: this is something that no schedule parser can check!
+.. note:: **COMMAND TEMPORISATION** All commands can be temporised (i.e. associated to a starting time) adding a proper **suffix**. There are two possibilities:  * **absolute temporisation** (the operation will be performed at the indicated time):
+    “@DOY-HH:MM:SS”, where DOY is the Day-Of-Year (1-366) and HH:MM:SS is the UT time; 
+  * **iterative temporisation** (the operation is performed now, then periodically according to 
+    the indicated time interval):
+    “@!DAYS-HH:MM:SS”, where DAYS is the number of days and HH:MM:SS is hours, minutes, seconds.
+Commands (temporised or not) can be used also in the init/pre-scan/post-scan procedures 
+inside schedules. *Observers* are in charge of considering *if* and *when* the use of a certain command 
+makes sense in their schedule, according to their specific needs and goals: this is 
+something that no schedule parser can check!
 
 Here follow all the commands exploitable in Nuraghe:
 
@@ -19,10 +23,9 @@ Here follow all the commands exploitable in Nuraghe:
 		stops the antenna. Activities can start again only commanding a 
 		mode change as antennaTrack (which does not affect the overall setup) or a new setup	**> antennaTrack** 
 		sets the antenna to PROGRAMTRACK mode. 
-		It does not change the pointing model or any receiver setup	**> asOn**  
-		enables the active surface according to the selected setup (see the *asSetup* command)	**> asSetup=[code]**  (code = S, SF, P, PF)		performs the setup of the active surface	**> azelOffsets=[double]d,[double]d**
+		It does not change the pointing model or any receiver setup	**> asSetup=[code]**  (code = S, SF, P, PF)		performs the setup of the active surface	**> azelOffsets=[double]d,[double]d**
 		sets the Az-El offsets (degrees). They are intended “on sky”, i.e. 
-		it is the actual offset run on the sky at the source Elevation. 			Example: > azelOffsets=-0.05d,0.05d	**> calOn** 
+		it is the actual offset run on the sky at the source Elevation. 		Example: > azelOffsets=-0.05d,0.05d	**> calOn** 
 		switches the calibration mark on	**> calOff** 
 		switches the calibration mark off	**> chooseBackend=[string]**  
 		selects the backend; string can be BACKENDS/TotalPower or BACKENDS/XBackends	**>  chooseRecorder=[string]**  
@@ -37,7 +40,7 @@ Here follow all the commands exploitable in Nuraghe:
 		deletes the N-th element in the queue of temporised commands	**> flushAll**  
 		deletes all the queue of the temporised commands	**> focusScan=[span],[duration]**   
 		performs a focus scan over the tracked source, span is in mm along 
-		the z-axis, duration is expressed in hh:mm:ss 			Example: > focusScan=60,00:01:00	**> getAttenuations** 
+		the z-axis, duration is expressed in hh:mm:ss. 		Example: > focusScan=60,00:01:00	**> getAttenuations** 
 		reads the attenuation values (dB) currently configured for the active sections, 
 		and lists them according to increasing section number	**> getTpi** 
 		reads the signal intensity (raw counts) for the active sections, 
@@ -46,7 +49,8 @@ Here follow all the commands exploitable in Nuraghe:
 		frame (‘eq’, ‘hor’ or ‘gal’). The user provides the offset value (degrees only), 
 		but the system automatically chooses on which axis to perform the slewing, 
 		taking into account the present position of the antenna	**> goTo=[double]d,[double]d** 
-		sends the antenna, while in TRACKING mode, to the specified Az-El position 			Example: goTo=180d,45d		The arguments are always rounded in the range 0-360 and 0-90 for azimuth and elevation 
+		sends the antenna, while in TRACKING mode, to the specified Az-El position
+                Example: goTo=180d,45d		The arguments are always rounded in the range 0-360 and 0-90 for azimuth and elevation
 		respectively (in any case the ranges are limited to mechanical contraints). 
 		The jolly character is valid and is considered as: keep the present value. 
 		The differences from the *preset* command are:
@@ -60,12 +64,12 @@ Here follow all the commands exploitable in Nuraghe:
 		sets the backend integration time (ms)	**> log=[filename]**   
 		defines a custom name for the logfile (do not specify the extension)	**> lonlatOffsets=[double]d,[double]d** 
 		sets the Galactic b-l offsets (degrees). They are intended “on sky”, i.e. 
-		it is the actual offset run on the sky at the source latitude. 			Example: > lonlatOffsets=2.0d,-1.0d	**> moon** 
+		it is the actual offset run on the sky at the source latitude. 		Example: > lonlatOffsets=2.0d,-1.0d	**> moon** 
 		points the antenna to the present coordinates of the center of the Moon	**> preset=[double]d,[double]d** 
 		sends the antenna, if in PRESET mode, to the specified Az-El position, 
 		without applying any pointing correction. This is useful when needing to 
 		point to a position next to the zenith. Beware: the antenna will reach the 
-		destination but no “on source” flag will be raised 			Example: > preset=180d,45d	**> project=[code]** 
+		destination but no “on source” flag will be raised.		Example: > preset=180d,45d	**> project=[code]** 
 		lets the system know which project is observing (the code/name must correspond 
 		to the one provided by the TAC). This code/name is then considered as default 
 		when launching schedules: the system will search for them in a folder named 
@@ -74,7 +78,7 @@ Here follow all the commands exploitable in Nuraghe:
 		in the “Project Name” keyword in the FITS main header, is a free string and might 
 		differ from the project official name. 	**> radecOffsets=[double]d,[double]d** 
 		sets the RA-Dec offsets (degrees). They are intended “on sky”, i.e. 
-		it is the actual offset run on the sky at the source Declination.  			Example: > radecOffsets=1.0d,0.0d	**> receiversMode=[code]**
+		it is the actual offset run on the sky at the source Declination.  		Example: > radecOffsets=1.0d,0.0d	**> receiversMode=[code]**
 		configures the working mode of the receiver, according to its peculiar characteristics	**> receiversSetup=[code]** (CCB, KKG, etc...) 
 		configures the receiver using the default parameters. 
 		It does NOT act on the backend, pointing model or antenna mount mode	**> servoPark** 
@@ -101,7 +105,7 @@ Here follow all the commands exploitable in Nuraghe:
 		label to it. Epoch can be ‘1950’, ‘2000’ or ‘-1’, the last one meaning that the provided 
 		coordinates are precessed to the observing epoch. The sector keyword forces the cable wrap 
 		sector, if needed: its value can be ‘cw’, ‘ccw’ or ‘neutral’. 
-		The last option means the system will automatically choose the optimal alternative			Example:  > sidereal=src12,319.256d,70.864d,2000,neutral	**> skydip=[El1]d,[El2]d,[duration]** 
+		The last option means the system will automatically choose the optimal alternative.		Example:  > sidereal=src12,319.256d,70.864d,2000,neutral	**> skydip=[El1]d,[El2]d,[duration]** 
 		performs an OTF acquisition at the current azimuth position, spanning in elevation from 
 		*El1* to *El2* (both expressed in degrees, with ‘d’ suffix), in *duration* seconds. 
 		A recorded must have previously been enabled in order to save the data. 	**> startSchedule=[project/][schedulename].scd,[N]** 
@@ -114,7 +118,7 @@ Here follow all the commands exploitable in Nuraghe:
 		points the antenna, in sidereal tracking, to the specified source, 
 		which must be present in the local catalogue 	**> tsys** 
 		measures the system temperature (K) in the position the antenna is pointing to. 
-		It returns a list of values, one for each section in use.Intermediate steps 
+		It returns a list of values, one for each section in use. Intermediate steps 
 		and calculations are stored in the active logfile	**> wait=[double]** 
 		sets a delay (in seconds) which is applied before the system reads/executes the next command	**> wx**  
 		returns the current weather parameters: ground temperature (°C), relative humidity (%), 

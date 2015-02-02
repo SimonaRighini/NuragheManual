@@ -14,10 +14,12 @@ Authors:
 Issue	     Release     What’s  
 	     Date        new
 ===========  =========== =========================================
-10           26/01/15    Checklist revision. Addition of 
-                         Troubleshooting appendix. 
+10           02/02/15    Checklist revision. Addition of 
+                         Troubleshooting and FaultReport appendix. 
                          Removal of previous Appendix C (Schedule
-                         structure), moved to a separate guide.     
+                         structure), moved to a separate guide.  
+                         “antennaReset” removed from *setupXXX* 
+                         command internal list of actions.   
 -----------  ----------- -----------------------------------------	
 09           11/11/14    **Release of NURAGHE 0.4**  
                          Addition of XARCOS commands.
